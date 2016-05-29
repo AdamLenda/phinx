@@ -1092,11 +1092,15 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
         if ($foreignKey->getConstraint()) {
             $def .= ' CONSTRAINT ' . $this->quoteColumnName($foreignKey->getConstraint());
         }
+        $def .= ' FOREIGN KEY ';
+        if ($foreignKey->getIndex()) {
+            $def .= $this->quoteColumnName($foreignKey->getIndex());
+        }
         $columnNames = array();
         foreach ($foreignKey->getColumns() as $column) {
             $columnNames[] = $this->quoteColumnName($column);
         }
-        $def .= ' FOREIGN KEY (' . implode(',', $columnNames) . ')';
+        $def .= '(' . implode(',', $columnNames) . ')';
         $refColumnNames = array();
         foreach ($foreignKey->getReferencedColumns() as $column) {
             $refColumnNames[] = $this->quoteColumnName($column);

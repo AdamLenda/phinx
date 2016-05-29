@@ -67,6 +67,10 @@ class ForeignKey
      * @var string|boolean
      */
     protected $constraint;
+    /**
+     * @var string
+     */
+    private $index;
 
     /**
      * Sets the foreign key columns.
@@ -204,6 +208,28 @@ class ForeignKey
     }
 
     /**
+     * Sets index for the foreign key.
+     *
+     * @param string $index
+     * @return ForeignKey
+     */
+    public function setIndex($index)
+    {
+        $this->index = $index;
+        return $this;
+    }
+
+    /**
+     * Gets index name for the foreign key.
+     *
+     * @return string
+     */
+    public function getIndex()
+    {
+        return $this->index;
+    }
+
+    /**
      * Utility method that maps an array of index options to this objects methods.
      *
      * @param array $options Options
@@ -214,7 +240,7 @@ class ForeignKey
     public function setOptions($options)
     {
         // Valid Options
-        $validOptions = array('delete', 'update', 'constraint');
+        $validOptions = array('delete', 'update', 'constraint', 'index');
         foreach ($options as $option => $value) {
             if (!in_array($option, $validOptions)) {
                 throw new \RuntimeException('\'' . $option . '\' is not a valid foreign key option.');
