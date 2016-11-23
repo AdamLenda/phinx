@@ -110,6 +110,35 @@ class Index
     }
 
     /**
+     * Allows the specification of "HASH" or "B-TREE" index type
+     *
+     * @var string $format
+     */
+    protected $format;
+
+    /**
+     * Allows the specification of "HASH" or "B-TREE" index type
+     *
+     * @param string $format
+     * @return $this
+     */
+    public function setFormat($format)
+    {
+        $this->format = $format;
+        return $this;
+    }
+
+    /**
+     * Allows the specification of "HASH" or "B-TREE" index type
+     *
+     * @return string $format
+     */
+    public function getFormat()
+    {
+        return $this->format;
+    }
+
+    /**
      * Sets the index name.
      *
      * @param string $name
@@ -163,7 +192,7 @@ class Index
     public function setOptions($options)
     {
         // Valid Options
-        $validOptions = array('type', 'unique', 'name', 'limit');
+        $validOptions = array('type', 'unique', 'name', 'limit', 'format');
         foreach ($options as $option => $value) {
             if (!in_array($option, $validOptions)) {
                 throw new \RuntimeException('\'' . $option . '\' is not a valid index option.');
