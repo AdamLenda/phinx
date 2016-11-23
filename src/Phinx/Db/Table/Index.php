@@ -27,44 +27,36 @@
  * @subpackage Phinx\Db
  */
 namespace Phinx\Db\Table;
-
 class Index
 {
     /**
      * @var string
      */
     const UNIQUE = 'unique';
-
     /**
      * @var string
      */
     const INDEX = 'index';
-
     /**
      * @var string
      */
     const FULLTEXT = 'fulltext';
-
     /**
      * @var array
      */
     protected $columns;
-
     /**
      * @var string
      */
     protected $type = self::INDEX;
-
     /**
      * @var string
      */
     protected $name = null;
-
     /**
      * @var integer
      */
     protected $limit = null;
-
     /**
      * Sets the index columns.
      *
@@ -76,7 +68,6 @@ class Index
         $this->columns = $columns;
         return $this;
     }
-
     /**
      * Gets the index columns.
      *
@@ -86,7 +77,6 @@ class Index
     {
         return $this->columns;
     }
-
     /**
      * Sets the index type.
      *
@@ -98,7 +88,6 @@ class Index
         $this->type = $type;
         return $this;
     }
-
     /**
      * Gets the index type.
      *
@@ -108,7 +97,6 @@ class Index
     {
         return $this->type;
     }
-
     /**
      * Sets the index name.
      *
@@ -120,7 +108,6 @@ class Index
         $this->name = $name;
         return $this;
     }
-
     /**
      * Gets the index name.
      *
@@ -130,7 +117,6 @@ class Index
     {
         return $this->name;
     }
-
     /**
      * Sets the index limit.
      *
@@ -142,7 +128,6 @@ class Index
         $this->limit = $limit;
         return $this;
     }
-
     /**
      * Gets the index limit.
      *
@@ -152,7 +137,6 @@ class Index
     {
         return $this->limit;
     }
-
     /**
      * Utility method that maps an array of index options to this objects methods.
      *
@@ -168,7 +152,6 @@ class Index
             if (!in_array($option, $validOptions)) {
                 throw new \RuntimeException('\'' . $option . '\' is not a valid index option.');
             }
-
             // handle $options['unique']
             if (strcasecmp($option, self::UNIQUE) === 0) {
                 if ((bool) $value) {
@@ -176,7 +159,6 @@ class Index
                 }
                 continue;
             }
-
             $method = 'set' . ucfirst($option);
             $this->$method($value);
         }
